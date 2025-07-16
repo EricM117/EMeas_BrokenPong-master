@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 307957608}
   - component: {fileID: 307957607}
   m_Layer: 0
-  m_Name: Square
+  m_Name: BottomWall
   m_TagString: BounceWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 307957606}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01027, y: -5.92061, z: 0}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
   m_LocalScale: {x: 13.333333, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 417015233}
   - component: {fileID: 417015234}
   m_Layer: 0
-  m_Name: P
+  m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,17 +618,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9069397689223ff47b4b2c1f907cb265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 0
-  s: 10
-  d: 4
-  ia:
-    m_Name: Ia
+  currentPlayer: 0
+  speed: 10
+  boundary: 4
+  input:
+    m_Name: Input
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 45f6577c-fe18-4e52-81b3-97fbb7578ab1
+    m_Id: 5bfe4912-1497-4de1-bee8-0d40309206ab
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: af42ad82-871f-4ad9-8cec-620b7eced767
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 1505febf-cd26-4896-8b20-a605c17e8e9a
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 270a7253-498a-45b4-9cb2-ca92df5b807e
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
     m_Flags: 0
 --- !u!61 &417015234
 BoxCollider2D:
@@ -1171,7 +1195,7 @@ GameObject:
   - component: {fileID: 710828497}
   - component: {fileID: 710828498}
   m_Layer: 0
-  m_Name: P
+  m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1259,17 +1283,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9069397689223ff47b4b2c1f907cb265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 1
-  s: 10
-  d: 4
-  ia:
-    m_Name: Ia
+  currentPlayer: 1
+  speed: 10
+  boundary: 4
+  input:
+    m_Name: Input
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 0091a13a-ccde-43fa-b586-ac10d7ba8fe2
+    m_Id: 3181ca8a-3719-4b84-99e4-5f6761e45e27
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: c7944fae-0c6f-4855-a6bd-208362412b62
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: cf291550-e3b2-47e6-92cb-b456665cf412
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: b92bf962-24e2-429f-a604-c5b3a0bb1ae2
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
     m_Flags: 0
 --- !u!61 &710828498
 BoxCollider2D:
@@ -1328,8 +1376,9 @@ GameObject:
   - component: {fileID: 750163711}
   - component: {fileID: 750163710}
   - component: {fileID: 750163709}
+  - component: {fileID: 750163712}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Player2Score
   m_TagString: ScoreWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1445,12 +1494,25 @@ Transform:
   m_GameObject: {fileID: 750163708}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.1563964, y: -0.92061, z: 0}
+  m_LocalPosition: {x: -7.1666665, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1823548398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &750163712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750163708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d6e1bce611d0428d88774bdad96fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoringPlayer: 1
 --- !u!1 &818121079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931116977}
   m_Layer: 0
-  m_Name: OtherGameObjects
+  m_Name: TopAndBottomWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1650,7 +1712,7 @@ Transform:
   m_GameObject: {fileID: 931116976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01027, y: 0.92061, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2026,7 +2088,7 @@ GameObject:
   - component: {fileID: 1171526702}
   - component: {fileID: 1171526701}
   m_Layer: 0
-  m_Name: Square
+  m_Name: TopWall
   m_TagString: BounceWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2142,7 +2204,7 @@ Transform:
   m_GameObject: {fileID: 1171526700}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01027, y: 4.07939, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 13.333333, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2162,7 +2224,7 @@ GameObject:
   - component: {fileID: 1368952081}
   - component: {fileID: 1368952082}
   m_Layer: 0
-  m_Name: WhyIsTheBallASquareAndNotACircle?
+  m_Name: GameBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2250,10 +2312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ad354a211088a408aff25e3ea24117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 8
-  tags: []
-  otherTag: 
-  aS: {fileID: 0}
+  ballSpeed: 8
+  tags:
+  - BounceWall
+  - Player
+  - ScoreWall
+  audioSource: {fileID: 0}
   clip1: {fileID: 0}
   clip2: {fileID: 0}
   clip3: {fileID: 0}
@@ -2949,7 +3013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823548398}
   m_Layer: 0
-  m_Name: GameObjects
+  m_Name: ScoreRegion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,7 +3028,7 @@ Transform:
   m_GameObject: {fileID: 1823548397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01027, y: 0.92061, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2982,7 +3046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1855949037}
   m_Layer: 0
-  m_Name: Art
+  m_Name: MiddleLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3031,8 +3095,9 @@ GameObject:
   - component: {fileID: 1890164554}
   - component: {fileID: 1890164553}
   - component: {fileID: 1890164552}
+  - component: {fileID: 1890164555}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Player1Score
   m_TagString: ScoreWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3148,12 +3213,25 @@ Transform:
   m_GameObject: {fileID: 1890164551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.1769366, y: -0.92061, z: 0}
+  m_LocalPosition: {x: 7.1666665, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1823548398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1890164555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890164551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1d6e1bce611d0428d88774bdad96fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoringPlayer: 0
 --- !u!1 &2019126693
 GameObject:
   m_ObjectHideFlags: 0
