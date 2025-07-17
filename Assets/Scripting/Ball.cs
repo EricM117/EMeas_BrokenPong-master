@@ -13,9 +13,9 @@ public class Ball : MonoBehaviour
     [SerializeField] private float ballSpeed = 8f;
     [SerializeField] private List<string> tags;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip clip1;
-    [SerializeField] private AudioClip clip2;
-    [SerializeField] private AudioClip clip3;
+    [SerializeField] private AudioClip scoreClip;
+    [SerializeField] private AudioClip wallCollideClip;
+    [SerializeField] private AudioClip playerCollideClip;
     private Vector2 velocity;
 
     void Start()
@@ -40,17 +40,23 @@ public class Ball : MonoBehaviour
         {
             ResetBall();
             GameManager.IncrementScore(other.GetComponent<ScoreWall>().scoringPlayer);
+            audioSource.clip = scoreClip;
+            audioSource.Play();
         }
 
         else if (other.CompareTag(tags[(int) CollisionTag.BounceWall]))
         {
             velocity.y = -velocity.y;
+            audioSource.clip = wallCollideClip;
+            audioSource.Play();
         }
         else if (other.CompareTag(tags[(int) CollisionTag.Player]))
         {
             velocity.x = -velocity.x;
             velocity.y = transform.position.y - other.transform.position.y;
             velocity = velocity.normalized;
+            audioSource.clip = playerCollideClip;
+            audioSource.Play();
         }
     }
 }
